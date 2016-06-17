@@ -1,38 +1,95 @@
 // Resets, Clearfix, etc
-
+@import "sass/partials/_reset.scss";
+@import "sass/partials/_clearfix.scss";
 // Variables
- 
-// Media Query Ranges 
- 
+$globalDark: #222;
+$globalLight: orange;
+$globalBright: #EEE;
+$globalPadding: 20px;
+// Media Query Ranges
+$medium: "(min-width: 600px)";
+$large: "(min-width: 900px)";
 // Mixins
-
+@mixin medium {
+  @media #{$medium} {
+    @content;
+  }
+}
+@mixin large {
+  @media #{$large} {
+    @content;
+  }
+}
+@mixin block_font($block_font_size: 25px, $block_font_color: $globalDark){
+  font-size: $block_font_size;
+  color: $block_font_color;
+}
 // Styles
 body{
   background-color: orange;
   text-align: center;
   color: #EEE;
+  @include medium {
+    background-color: orange;
+    color:white;
+  }
+  @include large {
+    background-color: $globalDark;
+    color: orange;
+  }
 }
- 
+
 h1, h2, h3, h4{
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
 }
- 
+
 h1{
   padding: 20px;
+  font-size: 55px;
+  color: $globalDark;
+  @include medium {
+    color: $globalBright;
+  }
+  @include large {
+    color: $globalLight;
+  }
 }
- 
+
 h2{
- 
+  font-size: 35px;
 }
- 
- 
+
+
 .block_family{
   max-width:350px;
   margin:auto;
+  @include medium {
+    max-width:500px;
+  }
+  @include large {
+    max-width:800px;
+  }
 }
- 
+
 .block_family li{
-  background-color: #222;
+  background-color: $globalDark;
   margin-bottom: 20px;
   padding: 20px;
+
+  @include medium {
+    background-color: $globalBright;
+    color: $globalLight;
+    float: left;
+    width:49%;
+    margin:.5%;
+    box-sizing: border-box;
+  }
+  @include large {
+    background-color: $globalLight;
+    color: $globalDark;
+    float: left;
+    width:32%;
+    margin:.66%;
+    box-sizing: border-box;
+  }
 }
